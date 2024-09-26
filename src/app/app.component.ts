@@ -24,7 +24,18 @@ export class AppComponent {
     age: 21
   }
 
+  students: number[] = [1,2,3,4,5,6]
+  parents:number[] = [7,8,9,10]
+
   constructor(){
+    const { name, age }= this.person
+    console.log('desestructuracion', name, age)
+
+    let both = [...this.students, ...this.parents] //Esto es para el Spred Operator
+    console.log('spreed operator: ', both)
+
+    console.log('REST operator', this.sum(2,4,6))
+
     console.log('substract', this.substrack(8,4))
     console.log('MAP:', this.animals.map((animal)=> (animal + ' new')))
     console.log('FOREACH:', this.animals.forEach((animal)=> (animal + ' new')))
@@ -33,12 +44,18 @@ export class AppComponent {
     console.log('INDEXOF:', this.animals.indexOf('c'))
   }
 
-  public sum(num1: number, num2: number): number{
+  public sum(...persons:number[]){
+    //return persons[0] + persons[1]   // Esto es para el Rest Operator
+    return persons.reduce((acumulador, valorActual) => 
+      (acumulador + valorActual), 10
+    ) //Esto es para el Reduce Operator
+  }
+  public sum2(num1: number, num2: number): number{
     return num1 + num2;
   }
 
   private substrack(num1: number, num2: number): number{
-      return num1 - num2;
+    return num1 - num2;
   }
 
   public getArray(){
