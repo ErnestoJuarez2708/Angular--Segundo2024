@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserCardComponent } from './user-card/user-card.component';
+import { CalculatorComponent } from './calculator/calculator.component';
 
 interface Person{
   name: string,
@@ -11,11 +12,12 @@ interface Person{
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, UserCardComponent], 
+  imports: [RouterOutlet, UserCardComponent, CalculatorComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  result: number = 0;
   title:number = 10;
   animals:string[] = ['a','b','c','d','e','f','g'];
 
@@ -94,4 +96,9 @@ export class AppComponent {
   public receiveData(data: any){
     console.log('Print in father component: ', data)
   }
+
+  public onResult(event: any){
+    this.result = event ?? 0
+  }
+
 }
