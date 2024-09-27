@@ -4,6 +4,8 @@
 
 
 <user-card 
-[name]="'juan'" 
-[email]="'juan@gmail.com'">
+    [name]="'juan'" 
+    [email]="'juan@gmail.com'"
+    (sendData)="receiveData($event)" 
+    >
 </user-card>

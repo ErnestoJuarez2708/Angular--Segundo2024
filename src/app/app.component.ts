@@ -91,4 +91,7 @@ export class AppComponent {
 
   // const resta = () => (20 - a);
 
+  public receiveData(data: any){
+    console.log('Print in father component: ', data)
+  }
 }
