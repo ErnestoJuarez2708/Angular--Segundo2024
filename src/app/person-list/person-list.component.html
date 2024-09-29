@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="persons-list">
+        @for (person of persons; track person) {
+            <div class="person-card">
+                <div class="person-title">
+                    <p>Persona</p>
+                </div>
+                <p>Gender: {{ person.gender }}</p>
+                <p>Name: {{ person.name }}</p>
+                <p>Age: {{ person.age }}</p>
+                <div class="discount-badge">
+                    @if(person.discount){
+                        discount  
+                    }
+                </div>   
+            </div>
+        }
+    </div>
+
+    <div class="totals-container">
+        <div class="totals">
+            <p>total persons female = {{ totalFemales }}</p>
+            <p>total persons male = {{ totalMales }}</p>
+            <p>discount = {{ totalDiscount }}</p>
+        </div>
+    
+        <button class="delete-btn" (click)="deletePersonsWithDiscount()">Borrar personas con descuento</button>
+    </div>
+</div>
