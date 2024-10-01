@@ -20,6 +20,10 @@ interface Person{
 })
 export class AppComponent {
 
+  users = [{name: 'abc', email: 'abs@gmail.com' }, {name: 'dfg', email: 'dfg@gmail.com' }]
+  selectedUser: any = this.users[0];
+
+
   userCardCreated: boolean = true 
 
   result: number = 0;
