@@ -1,6 +1,8 @@
 import { CommonModule } from "@angular/common";
 import {
+  AfterContentChecked,
   AfterContentInit,
+  AfterViewChecked,
   AfterViewInit,
   Component,
   DoCheck,
@@ -31,7 +33,9 @@ export class UserCardComponent
     OnChanges,
     DoCheck,
     AfterContentInit,
-    AfterViewInit
+    AfterViewInit,
+    AfterContentChecked,
+    AfterViewChecked
 {
   @Input() name: string = ""; //Se pone input cuando se quiere recibir datos del padre
   @Input() email: string = "";
@@ -79,6 +83,10 @@ export class UserCardComponent
     console.log("NG After CONTENT INIT");
   }
 
+  ngAfterContentChecked(): void {
+    console.log("Ng After Content CHECKED")
+  }
+
   ngAfterViewInit(): void {
     console.log("NG AFTER VIEW INIT");
     console.log("BUTTON TEST", this.buttonTest);
@@ -87,7 +95,11 @@ export class UserCardComponent
       this.buttonTest.nativeElement.textContent = 'button Test in After View Init'
     }
   }
-  
+
+  ngAfterViewChecked(): void {
+      console.log('NG AFTER VIEW CHECKED')
+  }
+
   public onSendData() {
     this.sendData.emit("Hi from child component");
   }
