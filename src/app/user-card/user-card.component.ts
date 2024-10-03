@@ -38,7 +38,8 @@ export class UserCardComponent
 
   @Output() sendData = new EventEmitter(); // Para hacer Click, envia los datos al padre
 
-  @ViewChild('buttonTest') buttonTest!: ElementRef
+  @ViewChild('buttonTest', {static: true}) buttonTest!: ElementRef
+  @ViewChild('buttonShow', {static: true}) buttonShow!: ElementRef
 
   password: string = "";
   showButton: boolean = false;
@@ -50,6 +51,9 @@ export class UserCardComponent
 
   ngOnInit(): void {
     console.log("user card ngOnInit");
+
+    this.buttonShow.nativeElement.textContent = 'button Show in OnInit'
+    this.buttonTest.nativeElement.textContent = 'button Test in OnInit'
 
     //this.password = this.name + ' ' + this.email + ' PASSWORD'
   }
@@ -78,9 +82,12 @@ export class UserCardComponent
   ngAfterViewInit(): void {
     console.log("NG AFTER VIEW INIT");
     console.log("BUTTON TEST", this.buttonTest);
-    this.buttonTest.nativeElement.textContent = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-  }
 
+    if(this.buttonTest){
+      this.buttonTest.nativeElement.textContent = 'button Test in After View Init'
+    }
+  }
+  
   public onSendData() {
     this.sendData.emit("Hi from child component");
   }
