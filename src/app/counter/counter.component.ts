@@ -9,10 +9,31 @@ import { Component, afterRender, afterNextRender } from '@angular/core';
 })
 export class CounterComponent {
   sum: number = 0
+  appBackground: string = 'red'
+
 
   constructor(){
-    afterRender(() => {
-      console.log('AFTER RENDER: ', this.sum)
+    afterRender({
+      earlyRead: () => {
+        const currentAppColor = this.appBackground
+        return 'From earlyRead: ' + currentAppColor
+      },
+      write: () => {
+        document.body.style.backgroundColor = this.appBackground
+        return 'From write: ' + this.appBackground
+      },
+      mixedReadWrite: (props) => {
+        if (props.indexOf('red') > -1){
+          this.appBackground = 'green'
+        } else {
+          this.appBackground = 'red'
+        }
+        return 'From mixedReadWrite: ' + this.appBackground
+      },
+      read: () => {
+        const newBackground =  this.appBackground
+        console.log('INTO read ', newBackground)
+      },
     })
 
     afterNextRender(() => {
