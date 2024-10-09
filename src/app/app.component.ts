@@ -5,6 +5,7 @@ import { CalculatorComponent } from './calculator/calculator.component';
 import { CommonModule } from '@angular/common';
 import { PersonListComponent } from './person-list/person-list.component';
 import { CounterComponent } from './counter/counter.component';
+import { filter, from, map, tap } from 'rxjs'
 
 interface Person{
   name: string,
@@ -45,25 +46,49 @@ export class AppComponent {
   var2 = null
   var3 = 'hola'
 
+  youtube = from([1,2,3,4,5,6]) //Nuevo observable
+
   constructor(){
     const { name, age }= this.person
-    console.log('desestructuracion', name, age)
+    //console.log('desestructuracion', name, age)
 
     let both = [...this.students, ...this.parents] //Esto es para el Spred Operator
-    console.log('spreed operator: ', both)
+    //console.log('spreed operator: ', both)
 
-    console.log('REST operator', this.sum(2,4,6))
-    console.log('Nullish Coalessing: ', this.var2 ?? this.var3) // Nullish
-    console.log('OR: ', this.var2 || this.var1) // OR de la vida
+    //console.log('REST operator', this.sum(2,4,6))
+    //console.log('Nullish Coalessing: ', this.var2 ?? this.var3) // Nullish
+    //console.log('OR: ', this.var2 || this.var1) // OR de la vida
 
 
 
-    console.log('substract', this.substrack(8,4))
-    console.log('MAP:', this.animals.map((animal)=> (animal + ' new')))
-    console.log('FOREACH:', this.animals.forEach((animal)=> (animal + ' new')))
-    console.log('FIND:', this.animals.find((animal)=> animal==='z'))
-    console.log('FILTER:', this.animals.filter((animal)=> animal==='y'))
-    console.log('INDEXOF:', this.animals.indexOf('c'))
+    //console.log('substract', this.substrack(8,4))
+    //console.log('MAP:', this.animals.map((animal)=> (animal + ' new')))
+    //console.log('FOREACH:', this.animals.forEach((animal)=> (animal + ' new')))
+    //console.log('FIND:', this.animals.find((animal)=> animal==='z'))
+    //console.log('FILTER:', this.animals.filter((animal)=> animal==='y'))
+    //console.log('INDEXOF:', this.animals.indexOf('c'))
+
+    this.youtube.subscribe((res) => {
+      console.log('SUSBCRIBER 1: ', res)
+    })
+  }
+
+  addVideo(){
+    this.youtube
+    .pipe(
+      map((res: number) => {
+        //console.log('MAP OPERATOR RXJS: ',res)
+        if(res % 2 === 0){
+          return res;
+        } else {
+          return null;
+        }
+      }),
+      tap((res) => {console.log('VALUE: ', res)}),
+      filter((res: number | null) => res !== null)
+    ).subscribe((res) => {
+      console.log('SUSBSCRIBER 2: ', res);
+    });
   }
 
   public sum(...persons:number[]){
@@ -84,7 +109,7 @@ export class AppComponent {
     const people: number[] = [1,2,3,4,5,6,7,8];
     for(let i = 0; i < people.length; i++){
       if(people[i] % 2 == 0){
-        console.log('person =', people[i]);
+        //console.log('person =', people[i]);
       }
     }
   }
