@@ -1,13 +1,23 @@
+import { CardComponent } from './card/card.component';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SearchComponent } from './search/search.component';
+import { ItemComponent } from './item/item.component';
+import { ListComponent } from './list/list.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [CommonModule,RouterOutlet, SearchComponent, ItemComponent, ListComponent, CardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'Angular--Segundo2024';
+  searchTerm: string = '';
+
+  onSearch(searchTerm: string) {
+    this.searchTerm = searchTerm;
+  };
+  selectedPerson: any = null;
 }

@@ -1,0 +1,8 @@
+<div class="list-container">
+    <h2 class="list-title">List Component</h2>
+    <app-item
+      *ngFor="let item of filteredItems"
+      [item]="item"
+      (delete)="removeItem(item.id)">
+    </app-item>
+  </div>  

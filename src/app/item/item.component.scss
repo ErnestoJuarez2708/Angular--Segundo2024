@@ -1,0 +1,25 @@
+.item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid black;
+    background-color: lightblue;
+  
+    &.professor {
+      background-color: lightyellow;
+    }
+  
+    button {
+      margin-left: 5px;
+      padding: 5px;
+      border: 1px solid black;
+      background-color: white;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: lightgray;
+      }
+    }
+  }  

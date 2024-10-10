@@ -1,0 +1,53 @@
+.card-container {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    width: 400px;
+    margin-top: 20px;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .tabs li {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .tabs li.active {
+    border-bottom: 2px solid #007bff;
+  }
+  
+  .tab-content {
+    margin-top: 10px;
+  }
+  
+  .personal-tab {
+    background-color: #d9eaf7;
+    padding: 10px;
+  }
+  
+  .geographic-tab {
+    background-color: #f9e4d3;
+    padding: 10px;
+  }
+  
+  .messages-tab {
+    background-color: #f8f7d3;
+    padding: 10px;
+  }
+  
+  .messages-tab ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .messages-tab li {
+    margin-bottom: 5px;
+  }  
