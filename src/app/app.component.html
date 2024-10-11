@@ -84,3 +84,10 @@
 >
   My CUSTOM ATTRIBUTE
 </div>
+
+<button (click)="userCardCreated = !userCardCreated">Change userCardCreated</button> 
+{{userCardCreated}}
+<div *ngCreateHtml="userCardCreated" (sendMessage)="getColor($event)"> 
+  <p>MY CUSTOM STRUCTURAL DIRECTIVE</p>
+  <p> Example </p>
+</div>
