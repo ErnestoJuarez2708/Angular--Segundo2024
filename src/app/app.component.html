@@ -1,5 +1,5 @@
 <div class="app-container">
   <app-search (search)="listComponent.filterItems($event)"></app-search>
   <app-list #listComponent (selectPerson)="selectedPerson = $event"></app-list>
-  <app-card [person]="selectedPerson"></app-card>
+  <app-card></app-card>
 </div>
