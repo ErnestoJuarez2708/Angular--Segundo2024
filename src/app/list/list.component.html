@@ -1,8 +1,11 @@
 <div class="list-container">
+  <app-search (search)="onSearch($event)"></app-search>
   <h2 class="list-title">List Component</h2>
+
   <app-item
     *ngFor="let item of filteredItems"
     [item]="item"
+    [showActions]="true" 
     (show)="onShowPerson(item)"
     (delete)="removeItem(item.id)">
   </app-item>

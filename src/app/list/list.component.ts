@@ -3,24 +3,26 @@ import { ItemComponent } from '../item/item.component';
 import { data } from './../data';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CommonModule,ItemComponent, FormsModule],
+  imports: [CommonModule, ItemComponent, FormsModule, SearchComponent],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss'
+  styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  @Input() searchTerm: string = '';  // Recibe el término de búsqueda
-  @Output() selectPerson = new EventEmitter<any>();  // Emitir evento para seleccionar persona
-  
+  @Input() searchTerm: string = '';
+  @Input() item: any;  
+  @Output() delete = new EventEmitter<void>();
+  @Output() show = new EventEmitter<any>();
+  @Output() selectPerson = new EventEmitter<any>();
   items = data;  
-  filteredItems = data;  // Lista filtrada
+  filteredItems = data;
 
   ngOnChanges() {
-    this.filterItems();  // Filtrar items cuando cambia el searchTerm
+    this.filterItems();
   }
 
   filterItems() {
@@ -39,6 +41,13 @@ export class ListComponent {
   }
 
   onShowPerson(person: any) {
-    this.selectPerson.emit(person);  // Emitir persona seleccionada
+    this.selectPerson.emit(person); // Este ya está correcto.
+    this.searchTerm = ''; // Reinicia el término de búsqueda si es necesario
+  }
+  
+
+  onSearch(searchTerm: string) { // Asegúrate de que esta función exista
+    this.searchTerm = searchTerm;
+    this.filterItems();
   }
 }

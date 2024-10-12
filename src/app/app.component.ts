@@ -9,20 +9,14 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule,RouterOutlet, SearchComponent, ItemComponent, ListComponent, CardComponent],
+  imports: [CommonModule, RouterOutlet, SearchComponent, ItemComponent, ListComponent, CardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  searchTerm: string = '';
   selectedPerson: any = null;
-
-  onSearch(searchTerm: string) {
-    this.searchTerm = searchTerm;
-  };
 
   onSelectPerson(person: any) {
     this.selectedPerson = person;
   }
-  
 }

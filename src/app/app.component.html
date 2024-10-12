@@ -1,10 +1,4 @@
 <div class="app-container">
-  <!-- Search Component -->
-  <app-search (search)="onSearch($event)"></app-search>
-  
-  <!-- List Component que emitirá la persona seleccionada -->
   <app-list (selectPerson)="onSelectPerson($event)"></app-list>
-  
-  <!-- Card Component que mostrará la persona seleccionada -->
   <app-card [person]="selectedPerson"></app-card>
 </div>

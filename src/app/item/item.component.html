@@ -1,5 +1,11 @@
 <div class="item-container" [ngClass]="{ 'professor': item.type === 'professor' }">
-    <span>{{ item.name }} {{ item.lastName }} - {{ item.type }}</span>
+  <div *ngIf="showActions">
+    <p>{{ item.name }} {{ item.lastName }} - {{ item.type }}</p>
     <button (click)="onShow()">Show</button>
     <button (click)="onDelete()">Delete</button>
   </div>
+
+  <div *ngIf="showActions2">
+    <p>{{ item.name }} {{ item.lastName }}</p>
+  </div>
+</div>

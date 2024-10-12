@@ -1,15 +1,15 @@
-<ul class="tabs">
+<div class="card-container">  
+  <ul class="tabs">
   <li (click)="setTab('personal')" [class.active]="currentTab === 'personal'">Personal</li>
   <li (click)="setTab('geographic')" [class.active]="currentTab === 'geographic'">Geographic</li>
   <li (click)="setTab('messages')" [class.active]="currentTab === 'messages'">Messages</li>
 </ul>
-
-<div class="card-container">  
   <div *ngIf="currentTab === 'personal'" class="tab-content personal-tab">
     <p><strong>Name:</strong> {{ person.name }}</p>
     <p><strong>LastName:</strong> {{ person.lastName }}</p>
     <p><strong>Type:</strong> {{ person.type }}</p>
-    <p><strong>Score:</strong> {{ score }}</p>
+    <p *ngIf="isProfessor()"><strong>Subject:</strong> {{ person.subject }}</p>
+    <p *ngIf="!isProfessor()"><strong>Score:</strong> {{ score }}</p>
   </div>
   
   <div *ngIf="currentTab === 'geographic'" class="tab-content geographic-tab">
@@ -21,9 +21,11 @@
   </div>
   
   <div *ngIf="currentTab === 'messages'" class="tab-content messages-tab">
+    <app-search (search)="onSearch($event)"></app-search>
     <app-item
-      *ngFor="let message of person.messages"
-      [item]="{ name: message, lastName: '', type: 'message' }">
+      *ngFor="let message of filteredMessages" 
+      [item]="{ name: message, lastName: '', type: 'message' }"
+      [showActions2]="true">
     </app-item>
   </div>
 </div>
