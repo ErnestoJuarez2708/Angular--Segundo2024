@@ -1,30 +1,29 @@
-<div class="card-container">
-    <ul class="tabs">
-      <li (click)="setTab('personal')" [class.active]="currentTab === 'personal'">Personal</li>
-      <li (click)="setTab('geographic')" [class.active]="currentTab === 'geographic'">Geographic</li>
-      <li (click)="setTab('messages')" [class.active]="currentTab === 'messages'">Messages</li>
-    </ul>
-  
-    <div *ngIf="currentTab === 'personal'" class="tab-content personal-tab">
-      <p><strong>Name:</strong> {{ person.name }}</p>
-      <p><strong>LastName:</strong> {{ person.lastName }}</p>
-      <p><strong>Type:</strong> {{ person.type }}</p>
-      <p><strong>Score:</strong> {{ score }}</p>
-    </div>
-  
-    <div *ngIf="currentTab === 'geographic'" class="tab-content geographic-tab">
-      <!-- Aquí se muestra la dirección con los detalles correctos -->
-      <p><strong>Address:</strong></p>
-      <p>{{ person.address.number }} {{ person.address.street }}</p>
-      <p><strong>Zone:</strong> {{ person.address.zone }}</p>
-      <p><strong>Country:</strong> {{ person.country }}</p>
-      <p><strong>Province:</strong> {{ person.province }}</p>
-    </div>
-  
-    <div *ngIf="currentTab === 'messages'" class="tab-content messages-tab">
-      <ul>
-        <li *ngFor="let message of person.messages">{{ message }}</li>
-      </ul>
-    </div>
+<ul class="tabs">
+  <li (click)="setTab('personal')" [class.active]="currentTab === 'personal'">Personal</li>
+  <li (click)="setTab('geographic')" [class.active]="currentTab === 'geographic'">Geographic</li>
+  <li (click)="setTab('messages')" [class.active]="currentTab === 'messages'">Messages</li>
+</ul>
+
+<div class="card-container">  
+  <div *ngIf="currentTab === 'personal'" class="tab-content personal-tab">
+    <p><strong>Name:</strong> {{ person.name }}</p>
+    <p><strong>LastName:</strong> {{ person.lastName }}</p>
+    <p><strong>Type:</strong> {{ person.type }}</p>
+    <p><strong>Score:</strong> {{ score }}</p>
   </div>
   
+  <div *ngIf="currentTab === 'geographic'" class="tab-content geographic-tab">
+    <p><strong>Address:</strong></p>
+    <p>{{ person.address.number }} {{ person.address.street }}</p>
+    <p><strong>Zone:</strong> {{ person.address.zone }}</p>
+    <p><strong>Country:</strong> {{ person.country }}</p>
+    <p><strong>Province:</strong> {{ person.province }}</p>
+  </div>
+  
+  <div *ngIf="currentTab === 'messages'" class="tab-content messages-tab">
+    <app-item
+      *ngFor="let message of person.messages"
+      [item]="{ name: message, lastName: '', type: 'message' }">
+    </app-item>
+  </div>
+</div>

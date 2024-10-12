@@ -15,9 +15,14 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   searchTerm: string = '';
+  selectedPerson: any = null;
 
   onSearch(searchTerm: string) {
     this.searchTerm = searchTerm;
   };
-  selectedPerson: any = null;
+
+  onSelectPerson(person: any) {
+    this.selectedPerson = person;
+  }
+  
 }

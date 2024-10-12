@@ -1,20 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { Component} from '@angular/core';
-import { data } from '../data';
+import { Component, Input} from '@angular/core';
+import { ItemComponent } from '../item/item.component';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ItemComponent],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
   currentTab: string = 'personal';
 
-  person = data[0];
+  
+  @Input() person: any;
 
   get score(): number {
+    if (!this.person) {
+      return 0; 
+    }
     const { firstTestScore, secondTestScore, finalTestScore } = this.person;
     return (firstTestScore! + secondTestScore! + finalTestScore!) / 3;
   }
