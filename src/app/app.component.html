@@ -91,3 +91,21 @@
   <p>MY CUSTOM STRUCTURAL DIRECTIVE</p>
   <p> Example </p>
 </div>
+
+
+<p>PIPES</p>
+
+<P> {{ users | json }} </P>
+<p> {{ 'juan' | uppercase }} </p>
+<p> {{ 'JUAN' | lowercase }} </p>
+<p> {{ 'hola mundo' | titlecase }}</p>
+<p> {{ 'Tue Oct 27 15:35:08 CDT 2009' | date: 'dd/MM/YYYY'  }} </p>
+
+<p> MY FISRT PIPE PURE </p>
+<p>{{ students | pure }}</p>
+<p> MY FIRST PIPE IMPURE</p>
+<p>{{ students | impure }}</p>
+
+
+<button (click)="students.push(12)">add neew number</button>
+<button (click)="addNumber()">add neew number in ts</button>
