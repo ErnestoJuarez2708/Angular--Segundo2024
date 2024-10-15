@@ -10,6 +10,8 @@ import { AppColorsDirective } from "./app-colors.directive";
 import { CreateHtmlDirective } from "./create-html.directive";
 import { PurePipe } from "./pure.pipe";
 import { ImpurePipe } from "./impure.pipe";
+import {MatCardModule} from '@angular/material/card';
+import { MatButtonModule } from "@angular/material/button";
 
 interface Person {
   name: string;
@@ -30,7 +32,9 @@ interface Person {
     AppColorsDirective,
     CreateHtmlDirective,
     PurePipe,
-    ImpurePipe
+    ImpurePipe,
+    MatCardModule,
+    MatButtonModule
   ],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
