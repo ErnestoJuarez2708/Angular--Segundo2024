@@ -158,12 +158,16 @@
 
 
 <div style="border: 4cqmax solid greenyellow;height: 500px ; width: 500px;">
-<button type="button" class="btn btn-light" [routerLink]="'/card'">User Card</button>
+<button type="button" class="btn btn-light" [routerLink]="['card', 8]">User Card</button>
+<button type="button" class="btn btn-light" (click)="goToCard()">User Card TS</button>
 <button type="button" class="btn btn-dark" [routerLink]="'/cal'">Calculator</button>
 <button type="button" class="btn btn-warning" [routerLink]="'/counter-nav'">Counter</button>
 <button type="button" class="btn btn-success" [routerLink]="'/student'">Student Module</button>
 <button type="button" class="btn btn-success" [routerLink]="'/student/classmate'"> Classmate </button>
 <button type="button" class="btn btn-danger" [routerLink]="'/student/average'"> Student/score/average</button>
+
+<button type="button" class="btn btn-secondary" (click)="goToStudentModule()"> from TS to student Module</button>
+
 
 <router-outlet>
 </router-outlet>
