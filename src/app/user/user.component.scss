@@ -1,0 +1,17 @@
+.closed-account {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 15px;
+    color: #721c24;
+  }
+  
+  .user-comp {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .user-comp.closed {
+    opacity: 0.5; 
+    pointer-events: none; 
+  }
+  

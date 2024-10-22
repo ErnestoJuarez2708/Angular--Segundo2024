@@ -46,4 +46,16 @@
     button:hover {
       opacity: 0.8;
     }
-  }  
+  }
+  .user-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;   
+  }
+  
+  .user-grid > div {
+    border: 1px solid black;
+    flex: 1 1 calc(33.33% - 20px);
+    box-sizing: border-box;
+  }
+    

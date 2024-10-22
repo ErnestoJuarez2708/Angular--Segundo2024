@@ -1,9 +1,14 @@
 <div class="user-comp">
+  <div *ngIf="isClosed" class="closed-account">
+    <p>Account closed for {{ user.name }}. No further interactions allowed.</p>
+  </div>
+
+  <div *ngIf="!isClosed">
     <div class="tabs">
       <button (click)="selectedTab = 'user'">User</button>
       <button (click)="selectedTab = 'notifications'">Notifications ({{ user.notifications.length }})</button>
     </div>
-  
+
     <div *ngIf="selectedTab === 'user'">
       <div class="user-info">
         <p><strong>Name:</strong> {{ user.name }}</p>
@@ -17,7 +22,7 @@
         </p>
         <p><strong>Amount available:</strong> {{ user.amountAvailable | currency }}</p>
       </div>
-  
+
       <div class="social-networks">
         <h3>Social Networks</h3>
         <div *ngFor="let network of availableSocialNetworks">
@@ -25,7 +30,7 @@
             {{ network.platform }}
           </button>
         </div>
-  
+
         <div>
           <h3>Subscriptions:</h3>
           <div *ngFor="let sub of user.subscriptions">
@@ -34,9 +39,10 @@
           </div>
         </div>
       </div>
-  
+
       <button (click)="closeAccount()">Close account</button>
     </div>
-  
+
     <app-notification *ngIf="selectedTab === 'notifications'" [notifications]="user.notifications"></app-notification>
-  </div>  
+  </div>
+</div>

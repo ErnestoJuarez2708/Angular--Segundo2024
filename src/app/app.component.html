@@ -17,4 +17,8 @@
     <mat-icon>star</mat-icon>
   </button>
 </div>
-<app-user [userId]="selectedUserId"></app-user>
+<div class="user-grid">
+  <div *ngFor="let user of users">
+    <app-user [userId]="user.user_id"></app-user>
+  </div>
+</div>

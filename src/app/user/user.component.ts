@@ -14,7 +14,8 @@ export class UserComponent {
   @Input() userId!: string;
   user: any;
   availableSocialNetworks = socialNetworks;
-  selectedTab = 'notifications'; // Simulando el tab seleccionado
+  selectedTab = 'user';
+  isClosed = false; 
 
 
   ngOnInit() {
@@ -36,6 +37,7 @@ export class UserComponent {
   }
   
   closeAccount() {
+    this.isClosed = true;
     console.log('Account closed for user: ' + this.user.name);
   }
 }
