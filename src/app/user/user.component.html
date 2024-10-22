@@ -1,1 +1,42 @@
-<p>user works!</p>
+<div class="user-comp">
+    <div class="tabs">
+      <button (click)="selectedTab = 'user'">User</button>
+      <button (click)="selectedTab = 'notifications'">Notifications ({{ user.notifications.length }})</button>
+    </div>
+  
+    <div *ngIf="selectedTab === 'user'">
+      <div class="user-info">
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Age:</strong> {{ user.age }}</p>
+        <p><strong>Status:</strong> {{ user.status }}</p>
+        <p>
+          <strong>Subscription type:</strong> 
+          <span [ngClass]="{'premium': user.subscriptionType === 'premium', 'free': user.subscriptionType === 'free'}">
+            {{ user.subscriptionType | titlecase }}
+          </span>
+        </p>
+        <p><strong>Amount available:</strong> {{ user.amountAvailable | currency }}</p>
+      </div>
+  
+      <div class="social-networks">
+        <h3>Social Networks</h3>
+        <div *ngFor="let network of availableSocialNetworks">
+          <button *ngIf="!user.subscriptions.includes(network.id)" (click)="addSubscription(network.id)">
+            {{ network.platform }}
+          </button>
+        </div>
+  
+        <div>
+          <h3>Subscriptions:</h3>
+          <div *ngFor="let sub of user.subscriptions">
+            <span>{{ getPlatformName(sub) }}</span>
+            <button (click)="removeSubscription(sub)">X</button>
+          </div>
+        </div>
+      </div>
+  
+      <button (click)="closeAccount()">Close account</button>
+    </div>
+  
+    <app-notification *ngIf="selectedTab === 'notifications'" [notifications]="user.notifications"></app-notification>
+  </div>  
