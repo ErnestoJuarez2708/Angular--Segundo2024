@@ -12,7 +12,7 @@ import { PurePipe } from "./pure.pipe";
 import { ImpurePipe } from "./impure.pipe";
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from "@angular/material/button";
-import { FormsModule } from "@angular/forms";
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 
 interface Person {
   name: string;
@@ -37,12 +37,17 @@ interface Person {
     ImpurePipe,
     MatCardModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
 })
 export class AppComponent {
+
+  scoreControl = new FormControl<string>('asdasdasdasd', [Validators.required])
+
+
   name:string='testname'
   lastname:string=''
 
@@ -96,6 +101,10 @@ export class AppComponent {
     this.youtube.subscribe((res) => {
       console.log("SUSBCRIBER 1: ", res);
     });
+
+    this.scoreControl.valueChanges.subscribe((res) => {
+      console.log('SCORE VALUE OBSERVABLE: ', res)
+    })
   }
 
   addVideo() {
@@ -196,4 +205,9 @@ export class AppComponent {
   onSubmit(data: any){
     console.log("TEMPLATE DRIVEN FORM: ",data)
   }
+
+  onPrintScore(){
+    console.log("SCORE: ", this.scoreControl.value)
+  }
+
 }
