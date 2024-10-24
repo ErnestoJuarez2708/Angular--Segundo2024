@@ -12,14 +12,20 @@ import { PurePipe } from "./pure.pipe";
 import { ImpurePipe } from "./impure.pipe";
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from "@angular/material/button";
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators, UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 
 interface Person {
   name: string;
   lastName: string;
   age?: number;
 }
-
+interface IForm {
+  name: string
+  score: string
+  school: string
+  proffesor: string
+  university: string
+}
 @Component({
   selector: "app-root",
   standalone: true,
@@ -43,12 +49,15 @@ interface Person {
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
 })
+
+
+
 export class AppComponent {
 
   scoreControl = new FormControl<string>('asdasdasdasd', [Validators.required])
 
   studentForm!: FormGroup 
-
+  student2Form!: UntypedFormGroup
 
   name:string='testname'
   lastname:string=''
@@ -82,7 +91,7 @@ export class AppComponent {
 
   youtube = from([1, 2, 3, 4, 5, 6]); //Nuevo observable
 
-  constructor(private router: Router, private formBuilder:FormBuilder) {
+  constructor(private router: Router, private formBuilder:FormBuilder, private untypedFormBuilder : UntypedFormBuilder) {
     //const { name, age } = this.person;
     //console.log('desestructuracion', name, age)
 
@@ -115,6 +124,22 @@ export class AppComponent {
       proffesor: [''],
       university: ['']
     })
+
+    this.student2Form = this.untypedFormBuilder.group({
+      name: ['', Validators.required],
+      score: [''],
+      school: [''],
+      proffesor: [''],
+      university: ['']
+    })
+    
+    /* this.studentForm = new FormGroup({
+      name: new FormControl<string>('sdasdasdasd', [Validators.required]),
+      score: new FormControl<string>('sdfsdfsdf'),
+      school: new FormControl<string>(''),
+      proffesor: new FormControl<string>(''),
+      university: new FormControl<string>('')
+    }) */
 
     this.studentForm.valueChanges.subscribe((res) => {
       console.log('FORM GROUP OBSERVABLE: ', res)
