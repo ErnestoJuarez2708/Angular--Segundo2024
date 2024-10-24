@@ -132,7 +132,7 @@ export class AppComponent {
       proffesor: [''],
       university: ['']
     })
-    
+
     /* this.studentForm = new FormGroup({
       name: new FormControl<string>('sdasdasdasd', [Validators.required]),
       score: new FormControl<string>('sdfsdfsdf'),
@@ -252,4 +252,7 @@ export class AppComponent {
     console.log("SCORE: ", this.scoreControl.value)
   }
 
+  print(){
+    console.log("FORM NAME: ", this.studentForm.get('name'))
+  }
 }
