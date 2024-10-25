@@ -191,8 +191,6 @@
 
 <p>NAVEGATION</p>
 
-
-<div style="border: 4cqmax solid greenyellow;height: 500px ; width: 500px;">
 <button type="button" class="btn btn-light" [routerLink]="['card', 8]">User Card</button>
 <button type="button" class="btn btn-light" (click)="goToCard()">User Card TS</button>
 <button type="button" class="btn btn-dark" [routerLink]="'/cal1'" [queryParams]="{ name: 'test', lastname: 'perez' }">Calculator querry html</button>
@@ -205,6 +203,8 @@
 
 <button type="button" class="btn btn-secondary" (click)="goToStudentModule()"> from TS to student Module</button>
 
+
+<div style="border: 4cqmax solid greenyellow;height: 500px ; width: 500px;">
 
 <router-outlet>
 </router-outlet>
