@@ -10,13 +10,13 @@ export class AuthService {
 
   constructor() { }
 
-  login(){
+  public login(){
     this.token = '123ABC'
     this.user = 'test@gmail.com'
     return this.token
   }
 
-  logout(){
+  public logout(){
     this.token = ''
     this.user = ''
   }
