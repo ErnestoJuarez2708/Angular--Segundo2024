@@ -13,6 +13,7 @@ import { ImpurePipe } from "./impure.pipe";
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from "@angular/material/button";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators, UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
+import { StudentService } from "./services/student.service";
 
 interface Person {
   name: string;
@@ -91,7 +92,10 @@ export class AppComponent {
 
   youtube = from([1, 2, 3, 4, 5, 6]); //Nuevo observable
 
-  constructor(private router: Router, private formBuilder:FormBuilder, private untypedFormBuilder : UntypedFormBuilder) {
+  constructor(private router: Router, private formBuilder:FormBuilder, private untypedFormBuilder : UntypedFormBuilder, private _studentService : StudentService) {
+    this._studentService.getStudents().subscribe((res) => {
+      console.log('STUDENTS JSON: ', res)
+    }); 
     //const { name, age } = this.person;
     //console.log('desestructuracion', name, age)
 
