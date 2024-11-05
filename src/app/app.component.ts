@@ -14,6 +14,7 @@ import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from "@angular/material/button";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators, UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { StudentService } from "./services/student.service";
+import { AuthService } from "./auth.service";
 
 interface Person {
   name: string;
@@ -92,10 +93,10 @@ export class AppComponent {
 
   youtube = from([1, 2, 3, 4, 5, 6]); //Nuevo observable
 
-  constructor(private router: Router, private formBuilder:FormBuilder, private untypedFormBuilder : UntypedFormBuilder, private _studentService : StudentService) {
-    this._studentService.getStudents().subscribe((res) => {
+  constructor(private _authService: AuthService,private router: Router, private formBuilder:FormBuilder, private untypedFormBuilder : UntypedFormBuilder, private _studentService : StudentService) {
+   /* this._studentService.getStudents().subscribe((res) => {
       console.log('STUDENTS JSON: ', res)
-    }); 
+    }); */
     //const { name, age } = this.person;
     //console.log('desestructuracion', name, age)
 
@@ -145,9 +146,9 @@ export class AppComponent {
       university: new FormControl<string>('')
     }) */
 
-    this.studentForm.valueChanges.subscribe((res) => {
+    /*this.studentForm.valueChanges.subscribe((res) => {
       console.log('FORM GROUP OBSERVABLE: ', res)
-    })
+    })*/
   }
   onSendData(){
     console.log('FORM GROUP: ', this.studentForm)
@@ -258,5 +259,9 @@ export class AppComponent {
 
   print(){
     console.log("FORM NAME: ", this.studentForm.get('name'))
+  }
+  onLogin(){
+    this._authService.login()
+    this.router.navigate(['student'])
   }
 }
