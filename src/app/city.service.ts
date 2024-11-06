@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 interface City {
+  id: number;
   name: string;
 }
 
@@ -48,14 +49,17 @@ export class CityService {
       (city) => city.name.toLowerCase() === cityName.toLowerCase()
     );
     if (cityExists) {
-      return of({ success: false, message: 'City already exists' });
+      return of({ success: false, message: 'La ciudad ya existe' });
     }
 
-    const newCity = { name: cityName };
+
+    const newId = this.cities.length > 0 ? Math.max(...this.cities.map(city => city.id)) + 1 : 1;
+    const newCity: City = { id: newId, name: cityName };
+
     this.cities.push(newCity);
     this.sortCities();
     this.saveToLocalStorage();
-    return of({ success: true, message: 'City added successfully' });
+    return of({ success: true, message: 'Ciudad añadida con éxito' });
   }
 
   deleteCity(
@@ -66,11 +70,12 @@ export class CityService {
     );
     if (index > -1) {
       this.cities.splice(index, 1);
+      this.cities = this.cities.map((city, i) => ({ ...city, id: i + 1 }));
       this.sortCities();
       this.saveToLocalStorage();
-      return of({ success: true, message: 'City deleted successfully' });
+      return of({ success: true, message: 'Ciudad eliminada con éxito' });
     }
-    return of({ success: false, message: 'City not found' });
+    return of({ success: false, message: 'Ciudad no encontrada' });
   }
 
   filterCities(filter: string): Observable<City[]> {
