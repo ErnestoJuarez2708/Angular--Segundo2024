@@ -5,6 +5,7 @@ import { CityService } from './city.service';
 import { CommonModule } from '@angular/common';
 
 interface City {
+  id: number;
   name: string;
 }
 

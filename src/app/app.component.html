@@ -22,8 +22,8 @@
   </div>
 
   <ul class="city-list">
-    <li *ngFor="let city of cities" (click)="deleteCity(city.name)" class="city-item">
-      {{ city.name }}
+    <li *ngFor="let city of cities" class="city-item">
+      <span>{{ city.id }}. {{ city.name }}</span>
       <button class="delete-btn" (click)="deleteCity(city.name); $event.stopPropagation()">Eliminar</button>
     </li>
   </ul>
